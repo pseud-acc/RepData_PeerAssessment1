@@ -37,12 +37,11 @@ daily_steps <- activity_data %>% group_by(date) %>%
                   summarise(steps = sum(steps, na.rm =TRUE))
 head(daily_steps)
 
-#Plot number of steps taken each day
-q <- ggplot(daily_steps, aes(date,steps)) + 
-                    labs(title = "Daily Steps taken by Wearer of Activity Monitoring Device",
-                         y = "Number of Steps", x = "Date")
+#Histogram of number of steps taken each day
+hist(daily_steps$steps,
+        main = "Daily Steps taken by Wearer of Activity Monitoring Device",
+        ylab = "Frequency", xlab = "Number of Steps")
 
-q + geom_bar(stat="identity")
 #Save plot to file
 dev.copy(png, file="figures/daily_steps.png")
 dev.off() #Close PNG device
@@ -106,11 +105,11 @@ daily_steps_clean <- activity_data_clean %>% group_by(date) %>%
 head(daily_steps)
 
 #Plot imputed data
-q2 <- ggplot(daily_steps_clean, aes(date,steps)) + 
-                    labs(title = "Daily Steps taken by Wearer of Activity Monitoring Device",
-                         y = "Number of Steps", x = "Date")
+#Histogram of number of steps taken each day
+hist(daily_steps_clean$steps,
+        main = "Daily Steps taken by Wearer of Activity Monitoring Device",
+        ylab = "Frequency", xlab = "Number of Steps")
 
-q2 + geom_bar(stat="identity")
 #Save plot to file
 dev.copy(png, file="figures/daily_steps_imputed_data.png")
 dev.off() #Close PNG device
